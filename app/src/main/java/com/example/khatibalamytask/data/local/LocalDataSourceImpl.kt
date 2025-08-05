@@ -1,4 +1,7 @@
 package com.example.khatibalamytask.data.local
 
-class LocalDataSource {
+import jakarta.inject.Inject
+
+class LocalDataSourceImpl @Inject constructor(
+) : LocalDataSource {
 }

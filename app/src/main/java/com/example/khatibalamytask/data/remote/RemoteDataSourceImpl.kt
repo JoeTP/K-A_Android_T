@@ -1,4 +1,9 @@
 package com.example.khatibalamytask.data.remote
 
-class RemoteDataSource {
+import jakarta.inject.Inject
+
+class RemoteDataSourceImpl @Inject constructor(
+    private val newsApiService: NewsApiService
+) : RemoteDataSource {
+
 }
