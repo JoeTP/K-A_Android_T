@@ -1,4 +1,4 @@
 package com.example.khatibalamytask.data.remote
 
-class RemoteDataSourceImpl {
+class RemoteDataSource {
 }
