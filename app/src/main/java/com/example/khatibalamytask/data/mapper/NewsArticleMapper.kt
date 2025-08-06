@@ -7,11 +7,11 @@ import com.example.khatibalamytask.domain.model.NewsArticle
 
 fun NewsDto.toDomain() : NewsArticle {
     return NewsArticle(
-        title = title,
-        description = description,
-        url = url,
-        publishedAt = publishedAt,
-        sourceName = source.name,
+        title = title ?: STRING_NULL,
+        description = description ?: STRING_NULL,
+        url = url ?: STRING_NULL,
+        publishedAt = publishedAt ?: STRING_NULL,
+        sourceName = source?.name ?: STRING_NULL,
         urlToImage = imageUrl ?: STRING_NULL
     )
 }
