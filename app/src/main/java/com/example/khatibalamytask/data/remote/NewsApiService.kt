@@ -13,14 +13,14 @@ interface NewsApiService {
     @GET(EVERYTHING_EP)
     suspend fun getNews(
         @Query(QUERY_KEY) query: String,
-        @Query("page") page: Int = 1,
-        @Query("pageSize") pageSize: Int = 20
+//        @Query("page") page: Int = 1,
+//        @Query("pageSize") pageSize: Int = 20
     ) : NewsResponse
 
     @GET(TOP_HEADLINES_EP)
     suspend fun getTopHeadlines(
         @Query(COUNTRY_KEY) country: String,
-        @Query("page") page: Int = 1,
-        @Query("pageSize") pageSize: Int = 20
+//        @Query("page") page: Int = 1,
+//        @Query("pageSize") pageSize: Int = 20
     ) : NewsResponse
 }

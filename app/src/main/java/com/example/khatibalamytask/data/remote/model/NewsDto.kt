@@ -5,6 +5,6 @@ data class NewsDto(
     val description: String?,
     val publishedAt: String?,
     val source: SourceDto?,
-    val imageUrl: String?,
+    val urlToImage: String?,
     val url: String?
 )

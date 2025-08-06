@@ -2,6 +2,7 @@ package com.example.khatibalamytask.data.di
 
 import com.example.khatibalamytask.domain.repository.NewsRepository
 import com.example.khatibalamytask.domain.usecase.GetHeadlinesUseCase
+import com.example.khatibalamytask.domain.usecase.SearchNewsUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,5 +17,11 @@ object NewsListModule {
     @Provides
     fun provideGetHeadlinesUseCase(repo : NewsRepository): GetHeadlinesUseCase {
         return GetHeadlinesUseCase(repo)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetLastSearchUseCase(repo : NewsRepository): SearchNewsUseCase {
+        return SearchNewsUseCase(repo)
     }
 }

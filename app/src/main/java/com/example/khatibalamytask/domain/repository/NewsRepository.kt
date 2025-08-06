@@ -7,4 +7,5 @@ import kotlinx.coroutines.flow.Flow
 interface NewsRepository {
 
     suspend fun getTopHeadlines(country: String) : Flow<List<NewsArticle>>
+    suspend fun searchNewsAndCacheQuery(query: String) : Flow<List<NewsArticle>>
 }

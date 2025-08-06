@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.khatibalamytask.core.ui.components.ErrorStateUi
@@ -22,7 +21,7 @@ import com.example.khatibalamytask.domain.model.NewsArticle
 @Composable
 fun NewsListScreenUi(modifier: Modifier = Modifier, viewModel: NewsListViewModel = hiltViewModel()) {
 
-    val uiState by viewModel.headlineUiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.newsUiState.collectAsStateWithLifecycle()
 
     when (uiState) {
         is NewsListUiState.Loading -> LoadingStateUi(modifier)

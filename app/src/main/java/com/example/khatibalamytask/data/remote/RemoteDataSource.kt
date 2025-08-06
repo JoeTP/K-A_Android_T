@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface RemoteDataSource {
     suspend fun getTopHeadlines(country: String): Flow<List<NewsArticle>>
+
+    suspend fun searchNews(query: String): Flow<List<NewsArticle>>
 }

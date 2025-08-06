@@ -33,6 +33,7 @@ fun SearchBar(
     Box (Modifier.height(110.dp), contentAlignment = Alignment.BottomCenter) {
         OutlinedTextField(
             value = query,
+
             onValueChange = onQueryChange,
             modifier = modifier,
             placeholder = { Text("Search news...") },

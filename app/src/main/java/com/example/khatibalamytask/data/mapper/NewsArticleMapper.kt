@@ -11,6 +11,6 @@ fun NewsDto.toDomain() : NewsArticle {
         url = url ?: NULL_STRING,
         publishedAt = publishedAt ?: NULL_STRING,
         sourceName = source?.name ?: NULL_STRING,
-        urlToImage = imageUrl
+        urlToImage = urlToImage
     )
 }
