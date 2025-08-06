@@ -1,8 +1,8 @@
 package com.example.khatibalamytask.data.di
 
 import com.example.khatibalamytask.BuildConfig
-import com.example.khatibalamytask.core.utils.constants.API_KEY_KEY
-import com.example.khatibalamytask.core.utils.constants.BASE_URL
+import com.example.khatibalamytask.core.utils.constants.AppStrings.Companion.API_KEY_KEY
+import com.example.khatibalamytask.core.utils.constants.AppStrings.Companion.BASE_URL
 import com.example.khatibalamytask.data.remote.NewsApiService
 import dagger.Module
 import dagger.Provides

@@ -1,8 +1,7 @@
-package com.example.khatibalamytask.feature_news_list.di
+package com.example.khatibalamytask.data.di
 
 import com.example.khatibalamytask.domain.repository.NewsRepository
 import com.example.khatibalamytask.domain.usecase.GetHeadlinesUseCase
-import com.example.khatibalamytask.feature_news_list.NewsListViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
