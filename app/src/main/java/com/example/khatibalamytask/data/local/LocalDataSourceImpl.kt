@@ -10,7 +10,7 @@ class LocalDataSourceImpl @Inject constructor(val preferencesManager: Preference
         preferencesManager.saveString(CACHED_KEY, query)
     }
 
-    override fun getCachedSearch(): String = preferencesManager.getString(CACHED_KEY) ?: NULL_STRING
+    override fun getCachedSearch(): String? = preferencesManager.getString(CACHED_KEY)
 
 
     override fun clearCache() {

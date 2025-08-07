@@ -4,7 +4,7 @@ interface LocalDataSource {
 
     fun cacheSearch(query : String)
 
-    fun getCachedSearch() : String
+    fun getCachedSearch() : String?
 
     fun clearCache()
 }

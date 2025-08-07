@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.khatibalamytask.core.ui.components.EmptyListStateUi
 import com.example.khatibalamytask.core.ui.components.ErrorStateUi
 import com.example.khatibalamytask.core.ui.components.LoadingStateUi
 import com.example.khatibalamytask.core.ui.components.NewsItemCard
@@ -32,8 +33,11 @@ fun NewsListScreenUi(modifier: Modifier = Modifier, viewModel: NewsListViewModel
 
         is NewsListUiState.Success -> {
             val data = (uiState as NewsListUiState.Success).newsList
-            Log.d("TAG", "NewsListScreenUi: $data")
-            HeadlinesSuccessState(modifier, articles = data)
+            if (data.isEmpty()) {
+                EmptyListStateUi(modifier)
+            }else{
+                HeadlinesSuccessState(modifier, articles = data)
+            }
         }
     }
 }

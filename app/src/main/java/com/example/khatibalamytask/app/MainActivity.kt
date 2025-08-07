@@ -41,11 +41,11 @@ class MainActivity : ComponentActivity() {
                             onQueryChange = {
                                 searchQuery = it
                                 viewModel.searchingQueryChange(it)
-//                                viewModel.searchNews(it)
                             },
                             onSearch = { query ->
-//                                viewModel.searchNews(query)
+                                viewModel.searchingQueryChange(query)
                             },
+                            placeholder = "Latest search was ${viewModel.searchQueryHistory}",
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(8.dp)

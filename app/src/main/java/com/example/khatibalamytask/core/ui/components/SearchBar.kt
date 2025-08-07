@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun SearchBar(
     query: String,
+    placeholder: String = "Search news...",
     onQueryChange: (String) -> Unit,
     onSearch: (String) -> Unit,
     modifier: Modifier = Modifier
@@ -36,7 +37,8 @@ fun SearchBar(
 
             onValueChange = onQueryChange,
             modifier = modifier,
-            placeholder = { Text("Search news...") },
+
+            placeholder = { Text(placeholder) },
             leadingIcon = {
                 Icon(
                     imageVector = Icons.Default.Search,

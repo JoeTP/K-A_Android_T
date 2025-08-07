@@ -12,16 +12,16 @@ class NewsRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSource
 ) : NewsRepository {
 
-    companion object {
-        private const val DEBOUNCE_TIMEOUT_MS = 1000L
-    }
-
     override suspend fun getTopHeadlines(country: String): Flow<List<NewsArticle>> =
         remoteDataSource.getTopHeadlines(country)
 
     override suspend fun searchNewsAndCacheQuery(query: String): Flow<List<NewsArticle>> {
         localDataSource.cacheSearch(query)
         return remoteDataSource.searchNews(query)
+    }
+
+    override fun getLastSearch(): String? {
+        return localDataSource.getCachedSearch()
     }
 
 

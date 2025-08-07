@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.khatibalamytask.domain.usecase.GetHeadlinesUseCase
+import com.example.khatibalamytask.domain.usecase.GetLastSearchUseCase
 import com.example.khatibalamytask.domain.usecase.SearchNewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
@@ -14,16 +15,19 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class NewsListViewModel @Inject constructor(
     private val getHeadlinesUseCase: GetHeadlinesUseCase,
-    private val searchNewsUseCase: SearchNewsUseCase
+    private val searchNewsUseCase: SearchNewsUseCase,
+    private val getLastSearchUseCase: GetLastSearchUseCase
 ) : ViewModel() {
 
     private val _newsUiState = MutableStateFlow<NewsListUiState>(NewsListUiState.Loading)
     val newsUiState = _newsUiState
 
-    val searchQuery = MutableStateFlow("")
+    private val searchQuery = MutableStateFlow("")
+    var searchQueryHistory = ""
+        private set
 
     init {
-        getHeadlines()
+        getLastSearch()
     }
 
     fun searchingQueryChange(query: String) {
@@ -31,9 +35,19 @@ class NewsListViewModel @Inject constructor(
         searchNews()
     }
 
+    fun getLastSearch() = viewModelScope.launch {
+        val query = getLastSearchUseCase(Unit)
+        if (query != null) {
+            searchQueryHistory = query
+//            Log.d(TAG, "getLastSearch: $")
+            searchingQueryChange(query)
+        } else {
+            getHeadlines()
+        }
+    }
 
     fun searchNews() = viewModelScope.launch {
-        searchQuery.debounce (800L).collect { query ->
+        searchQuery.debounce(800L).collect { query ->
             if (query.isNotEmpty()) {
                 searchNewsUseCase(query).collect { result ->
                     Log.i("TAG", "searchNews: $result")
@@ -41,11 +55,6 @@ class NewsListViewModel @Inject constructor(
                 }
             }
         }
-
-//        searchNewsUseCase(searchQuery.value).collect { result ->
-//            Log.i("TAG", "searchNews: $result")
-//            _newsUiState.value = NewsListUiState.Success(result)
-//        }
     }
 
     fun getHeadlines() = viewModelScope.launch {
