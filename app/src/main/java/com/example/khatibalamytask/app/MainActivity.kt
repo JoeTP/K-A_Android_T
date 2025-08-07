@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,15 +40,20 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainLayout() {
+
+    val snackbarHostState = remember { SnackbarHostState() }
+
     KhatibAlamyTaskTheme {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             topBar = {
                 AppTopBar()
-            }
+            },
+            snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
         ) { innerPadding ->
             NewsListScreenUi(
                 modifier = Modifier.padding(innerPadding),
+                snackbarHostState = snackbarHostState
             )
         }
     }

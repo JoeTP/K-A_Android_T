@@ -13,8 +13,12 @@ class RemoteDataSourceImpl @Inject constructor(private val newsApiService: NewsA
         emit(response.articles.map { it.toDomain() })
     }
 
-    override suspend fun searchNews(query: String): Flow<List<NewsArticle>> = flow {
-        val response = newsApiService.getNews(query)
+    override suspend fun searchNews(query: String, page: Int, pageSize: Int): Flow<List<NewsArticle>> = flow {
+        val response = newsApiService.getNews(
+            query = query,
+            page = page,
+            pageSize = pageSize
+        )
         emit(response.articles.map { it.toDomain() })
     }
 

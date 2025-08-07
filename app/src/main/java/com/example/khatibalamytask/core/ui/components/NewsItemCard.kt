@@ -73,7 +73,6 @@ fun NewsItemCard(
             dateAndTimeFormatter(publishedAt)?.let {
                 Text(it.first, style = dateTimeStyle, maxLines = 2, overflow = TextOverflow.Ellipsis)
             }
-
         }
     }
 

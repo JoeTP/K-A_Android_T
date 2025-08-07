@@ -26,9 +26,6 @@ fun AppTopBar() {
             searchQuery = it
             viewModel.searchingQueryChange(it)
         },
-        onSearch = { query ->
-            viewModel.searchingQueryChange(query)
-        },
         placeholder = if(lastSearch.isEmpty()) "Search news..." else "last search keyword: $lastSearch",
         modifier = Modifier
             .fillMaxWidth()

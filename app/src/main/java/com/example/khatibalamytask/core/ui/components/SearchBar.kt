@@ -28,7 +28,6 @@ fun SearchBar(
     query: String,
     placeholder: String = stringResource(R.string.search_news),
     onQueryChange: (String) -> Unit,
-    onSearch: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -51,7 +50,6 @@ fun SearchBar(
                 ),
                 keyboardActions = KeyboardActions(
                     onSearch = {
-                        onSearch(query)
                         keyboardController?.hide()
                     }
                 ),
