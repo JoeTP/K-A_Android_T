@@ -4,7 +4,7 @@ package com.example.khatibalamytask.core.utils.constants
 class AppStrings {
     companion object {
 
-        const val NULL_STRING: String = "null"
+        const val NULL_STRING: String = ""
 
         //!network
         const val BASE_URL: String = "https://newsapi.org/"

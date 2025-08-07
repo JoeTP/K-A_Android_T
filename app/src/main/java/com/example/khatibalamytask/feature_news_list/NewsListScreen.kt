@@ -55,7 +55,6 @@ fun HeadlinesSuccessState(modifier: Modifier = Modifier, articles: List<NewsArti
                 title = it.title,
                 description = it.description,
                 imageUrl = it.urlToImage,
-                url = it.url,
                 publishedAt = it.publishedAt,
                 sourceName = it.sourceName,
             ) {

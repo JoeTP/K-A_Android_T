@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
                             onSearch = { query ->
                                 viewModel.searchingQueryChange(query)
                             },
-                            placeholder = "Latest search was ${viewModel.searchQueryHistory}",
+                            placeholder = "last search keyword: ${viewModel.searchQueryHistory}",
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(8.dp)
