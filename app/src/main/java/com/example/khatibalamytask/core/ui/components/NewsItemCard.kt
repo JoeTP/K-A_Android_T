@@ -60,7 +60,7 @@ fun NewsItemCard(
             ) {
                 Text(modifier = Modifier.height(20.dp), text = title, style = titleStyle, maxLines = 1, overflow = TextOverflow.Ellipsis)
                 HorizontalDivider(Modifier.padding(vertical = 8.dp))
-                Text(description, style = descriptionStyle, maxLines = 2, overflow = TextOverflow.Ellipsis)
+                Text(description, style = descriptionStyle, maxLines = 3, overflow = TextOverflow.Ellipsis)
             }
         }
         Row(

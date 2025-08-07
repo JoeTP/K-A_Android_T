@@ -1,6 +1,5 @@
 package com.example.khatibalamytask.feature_news_list
 
-import android.util.Log
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -37,7 +36,7 @@ fun NewsListScreenUi(modifier: Modifier = Modifier, viewModel: NewsListViewModel
             val data = (uiState as NewsListUiState.Success).newsList
             if (data.isEmpty()) {
                 EmptyListStateUi(modifier)
-            }else{
+            } else {
                 HeadlinesSuccessState(modifier, articles = data)
             }
         }
@@ -49,7 +48,7 @@ fun HeadlinesSuccessState(modifier: Modifier = Modifier, articles: List<NewsArti
 
     val context = LocalContext.current
 
-    LazyColumn(modifier.fillMaxSize(), contentPadding = PaddingValues(DEFAULT_PADDING), ) {
+    LazyColumn(modifier.fillMaxSize(), contentPadding = PaddingValues(DEFAULT_PADDING)) {
         items(articles) {
             NewsItemCard(
                 title = it.title,
