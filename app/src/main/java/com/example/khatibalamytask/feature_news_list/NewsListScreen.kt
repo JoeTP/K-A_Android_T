@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.khatibalamytask.core.ui.components.EmptyListStateUi
@@ -17,6 +18,7 @@ import com.example.khatibalamytask.core.ui.components.ErrorStateUi
 import com.example.khatibalamytask.core.ui.components.LoadingStateUi
 import com.example.khatibalamytask.core.ui.components.NewsItemCard
 import com.example.khatibalamytask.core.utils.constants.AppValues.Companion.DEFAULT_PADDING
+import com.example.khatibalamytask.core.utils.functions.openInBrowser
 import com.example.khatibalamytask.domain.model.NewsArticle
 
 @Composable
@@ -44,6 +46,9 @@ fun NewsListScreenUi(modifier: Modifier = Modifier, viewModel: NewsListViewModel
 
 @Composable
 fun HeadlinesSuccessState(modifier: Modifier = Modifier, articles: List<NewsArticle>) {
+
+    val context = LocalContext.current
+
     LazyColumn(modifier.fillMaxSize(), contentPadding = PaddingValues(DEFAULT_PADDING), ) {
         items(articles) {
             NewsItemCard(
@@ -53,7 +58,9 @@ fun HeadlinesSuccessState(modifier: Modifier = Modifier, articles: List<NewsArti
                 url = it.url,
                 publishedAt = it.publishedAt,
                 sourceName = it.sourceName,
-            ) {}
+            ) {
+                openInBrowser(context, it.url)
+            }
             Spacer(modifier = Modifier.height(DEFAULT_PADDING))
         }
     }
