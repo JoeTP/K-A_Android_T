@@ -1,5 +1,6 @@
 package com.example.khatibalamytask.feature_news_list
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.khatibalamytask.domain.model.NewsArticle
@@ -79,21 +80,33 @@ class NewsListViewModel @Inject constructor(
             query = _searchQuery.value,
             loadMore = loadMore
         )
-        searchNewsUseCase(params)
-            .debounce(2000L)
-            .catch { e ->
-                _snackbarMessage.emit(e.message ?: "An error occurred")
+        try {
+            searchNewsUseCase(params)
+                .debounce(2000L)
+                .catch { e ->
+                    Log.e("TAG", "searchNews: =>>${e.message}<==", e)
+                    e.message?.let {
+                        checkErrorCode(it)
+                    }
 //                    _newsUiState.value = NewsListUiState.Error(e.message ?: "An error occurred")
-            }
-            .collect { newArticles ->
-                currentArticles = if (loadMore) {
-                    currentArticles + newArticles
-                } else {
-                    newArticles
                 }
-                _newsUiState.value = NewsListUiState.Success(currentArticles)
+                .collect { newArticles ->
+                    currentArticles = if (loadMore) {
+                        currentArticles + newArticles
+                    } else {
+                        newArticles
+                    }
+                    _newsUiState.value = NewsListUiState.Success(currentArticles)
+                }
+        } catch (e: Exception) {
+            Log.e("TAG", "searchNewssss: ${e.message}", e)
+            e.message?.let {
+                if (it.contains("HTTP"))
+                    _snackbarMessage.emit("Free plan limit reached. Please upgrade to a paid plan to use this feature.")
             }
-        _isLoadingMore.value = false
+        } finally {
+            _isLoadingMore.value = false
+        }
     }
 
     private fun loadHeadlines() {
@@ -124,5 +137,19 @@ class NewsListViewModel @Inject constructor(
 
     fun loadMore() = viewModelScope.launch {
         searchNews(loadMore = true)
+    }
+
+    private suspend fun checkErrorCode(errorCode: String) {
+        val err = errorCode.substringAfter(" ").trim()
+        when (err) {
+            "429" -> {
+//                _snackbarMessage.emit("Free plan limit reached. Requested over 100 news per 24 hours.")
+                _newsUiState.value = NewsListUiState.Error("Free plan limit reached. Requested over 100 news per 24 hours.")
+            }
+
+            "426" -> {
+                _snackbarMessage.emit("Free plan limit reached. Cannot load more than 100 news.")
+            }
+        }
     }
 }

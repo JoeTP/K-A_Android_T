@@ -11,7 +11,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -33,8 +32,6 @@ import com.example.khatibalamytask.core.utils.functions.openInBrowser
 import com.example.khatibalamytask.domain.model.NewsArticle
 import kotlinx.coroutines.flow.distinctUntilChanged
 
-import kotlinx.coroutines.flow.map
-
 @Composable
 fun NewsListScreenUi(
     modifier: Modifier = Modifier,
@@ -52,13 +49,7 @@ fun NewsListScreenUi(
 
     when (uiState) {
         is NewsListUiState.Loading -> LoadingStateUi(modifier)
-        is NewsListUiState.Error -> {
-            val error = uiState as NewsListUiState.Error
-            ErrorStateUi(modifier = modifier, msg = error.message)
-
-
-        }
-
+        is NewsListUiState.Error -> ErrorStateUi(msg = (uiState as NewsListUiState.Error).message)
         is NewsListUiState.Success -> {
             val data = (uiState as NewsListUiState.Success).newsList
             if (data.isEmpty()) {
@@ -73,6 +64,7 @@ fun NewsListScreenUi(
         }
     }
 }
+
 @Composable
 fun HeadlinesSuccessState(
     modifier: Modifier = Modifier,

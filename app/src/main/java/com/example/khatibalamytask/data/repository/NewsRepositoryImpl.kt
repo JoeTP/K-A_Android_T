@@ -42,7 +42,7 @@ class NewsRepositoryImpl @Inject constructor(
 
         paginationState = paginationState.copy(isLoading = true)
 
-        try {
+//        try {
             val articles = remoteDataSource.searchNews(
                 query = query,
                 page = paginationState.currentPage,
@@ -58,10 +58,10 @@ class NewsRepositoryImpl @Inject constructor(
             localDataSource.cacheSearch(query)
 
             emit(articles)
-        } catch (e: Exception) {
-            Log.e("TAG", "searchNewsAndCacheQuery: ", e)
-            paginationState = paginationState.copy(isLoading = false)
-        }
+//        } catch (e: Exception) {
+//            Log.e("TAG", "searchNewsAndCacheQuery: ", e)
+//            paginationState = paginationState.copy(isLoading = false)
+//        }
     }
 
     override fun getLastSearch(): String? {

@@ -5,6 +5,7 @@ import com.example.khatibalamytask.core.utils.constants.AppStrings.Companion.EVE
 import com.example.khatibalamytask.core.utils.constants.AppStrings.Companion.QUERY_KEY
 import com.example.khatibalamytask.core.utils.constants.AppStrings.Companion.TOP_HEADLINES_EP
 import com.example.khatibalamytask.data.remote.model.NewsResponse
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
