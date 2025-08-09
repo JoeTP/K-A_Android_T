@@ -19,6 +19,10 @@ dependencyResolutionManagement {
     }
 }
 
+
 rootProject.name = "KhatibAlamyTask"
 include(":app")
- 
+include(":core")
+include(":data")
+include(":domain")
+include(":feature_search")
