@@ -1,6 +1,6 @@
 package com.example.khatibalamytask.data.di
 
-import com.example.khatibalamytask.BuildConfig
+import com.example.data.BuildConfig
 import com.example.khatibalamytask.core.utils.constants.AppStrings.Companion.API_KEY_KEY
 import com.example.khatibalamytask.core.utils.constants.AppStrings.Companion.BASE_URL
 import com.example.khatibalamytask.data.remote.NewsApiService
@@ -10,6 +10,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit

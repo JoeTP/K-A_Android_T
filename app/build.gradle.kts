@@ -17,15 +17,7 @@ android {
     namespace = "com.example.khatibalamytask"
     compileSdk = 36
 
-    val localProperties = Properties()
-    val localPropertiesFile = rootProject.file("local.properties")
-    if (localPropertiesFile.exists()) {
-        localPropertiesFile.inputStream().use {
-            localProperties.load(it)
-        }
-    }
 
-    val apiKey = localProperties.getProperty("API_KEY")
 
     defaultConfig {
         applicationId = "com.example.khatibalamytask"
@@ -35,7 +27,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "API_KEY", apiKey)
     }
 
     buildTypes {
@@ -53,7 +44,6 @@ android {
     }
     buildFeatures {
         compose = true
-        buildConfig = true
     }
 }
 
