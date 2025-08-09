@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">KhatibAlamyTask</string>
+    <string name="app_name">News Explorer</string>
     <string name="empty">Empty</string>
     <string name="search_news">Search news...</string>
     <string name="search">Search</string>
