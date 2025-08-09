@@ -31,13 +31,17 @@ fun SearchBar(
     modifier: Modifier = Modifier
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
+    val maxLength = 500
 
     Box(Modifier.height(110.dp), contentAlignment = Alignment.BottomCenter) {
             OutlinedTextField(
                 shape = RoundedCornerShape(100.dp),
                 value = query,
-                onValueChange = onQueryChange,
-                modifier = modifier,
+                onValueChange = { newText ->
+                    if (newText.length <= maxLength) {
+                        onQueryChange(newText)
+                    }
+                },                modifier = modifier,
                 placeholder = { Text(placeholder, style = placeHolderStyle) },
                 leadingIcon = {
                     Icon(
