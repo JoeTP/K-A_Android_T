@@ -15,6 +15,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -39,6 +40,7 @@ fun NewsItemCard(
 
     Column(
         modifier = modifier
+            .clip( RoundedCornerShape(12.dp))
             .shadow(5.dp, RoundedCornerShape(12.dp), clip = false, spotColor = MaterialTheme.colorScheme.surfaceTint)
     ) {
         Row(
